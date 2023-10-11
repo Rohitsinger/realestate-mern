@@ -9,7 +9,7 @@ export const CreateListing = () => {
 
            <div className='flex flex-col gap-4'>
           <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='username' type="text" placeholder='enter name'/>
-        <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='description' type="text" placeholder='enter description'/>
+        <textarea className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='description' type="text" placeholder='enter description'/>
         <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='address' type="text" placeholder='enter address'/>
           </div>
         <div className="flex gap-4 flex-wrap p-2 " >
