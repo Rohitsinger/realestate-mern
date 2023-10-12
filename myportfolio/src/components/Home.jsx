@@ -1,12 +1,54 @@
 import React, { useEffect, useState } from 'react'
-
-
 import { Link } from 'react-router-dom'
 
 import RecentOfferCard from '../reuse/RecentOfferCard'
 import PlaceforRentCard from '../reuse/PlaceforRentCard'
 import PlaceforSalecard from '../reuse/PlaceforSalecard'
+
+import {AiOutlineDoubleLeft} from 'react-icons/ai'
+import {AiOutlineDoubleRight} from 'react-icons/ai'
 const Home = () => {
+
+  const slides = [
+    {
+    
+      url:"https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+    
+      url:"https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+   
+      url:"https://images.pexels.com/photos/2506990/pexels-photo-2506990.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+   
+      url:"https://images.pexels.com/photos/2346091/pexels-photo-2346091.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+   
+      url:"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+  
+      url:"https://images.pexels.com/photos/53610/large-home-residential-house-architecture-53610.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      url:"https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+  ]
+  const [currentIndex,setCurrentIndex] = useState(3)
+  const prevSlide = () =>{
+    let isFirstImage = currentIndex === 0;
+    let newIndex = isFirstImage ? slides.length-1 : currentIndex-1
+     setCurrentIndex(newIndex)
+  }
+  const nextSlide = () =>{
+    let isLastImage = currentIndex === slides.length-1;
+    let newIndex = isLastImage ? 0:  currentIndex+1
+     setCurrentIndex(newIndex)
+  }
 
   return (
     <div>
@@ -19,15 +61,18 @@ const Home = () => {
   <h5 className='mt-8 text-red-800'> <Link to="/search" >Let's Start now..</Link></h5>
     </div>
    </div>
-<div class="overflow-x-auto ">
-  <div class="min-w-screen min-h-screen flex items-center justify-center">
-    <div class="w-full p-8 rounded-lg flex object-cover">
-    <img src='https://images.pexels.com/photos/2098691/pexels-photo-2098691.jpeg?auto=compress&cs=tinysrgb&w=600'/>
-      <img src='https://images.pexels.com/photos/2029715/pexels-photo-2029715.jpeg?auto=compress&cs=tinysrgb&w=600'/>
-      <img src='https://images.pexels.com/photos/2346091/pexels-photo-2346091.jpeg?auto=compress&cs=tinysrgb&w=600'/>
-    </div>
-  </div>
+<div className=' max-w-[1480px] h-[480px] m-auto py-16 px-4 w-full flex justify-between  group duration-200  relative'>
+ <div style={{backgroundImage:`url(${slides[currentIndex].url})`}} className='w-full h-full flex rounded-4xl bg-center bg-cover duration-500 '></div>
+<div className='absolute  hidden group-hover:block top-[50%] translate-x-0 translate-y-[50%] left-5  text-white text-2xl rounded-full p-2 bg-black/20  cursor-pointer '>
+      <AiOutlineDoubleLeft onClick={()=>prevSlide()}/>
 </div>
+  <div className='absolute  hidden  group-hover:block  top-[50%] translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20  cursor-pointer text-white '>
+     <AiOutlineDoubleRight onClick={()=>nextSlide()}/>
+  </div>
+
+</div>
+
+{/* cards display for rents sale and offers */}
      <div className='overflow-x-hidden '>
      <div className='w-full '>
      
