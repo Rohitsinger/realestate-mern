@@ -12,7 +12,12 @@ import Profile from './pages/Profile'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
 import { CreateListing } from './pages/CreateListing'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
+
+  
+
 
 
   return (
@@ -31,6 +36,7 @@ function App() {
 
           <Route path='/createlisting' element={<CreateListing/>}/>
         </Routes>
+        <ToastContainer />
       </BrowserRouter>
        
     </div>
