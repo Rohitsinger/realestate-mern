@@ -4,10 +4,10 @@ export const CreateListing = () => {
   return (
 <div>        
        <h1 className=' flex justify-center items-center text-2xl font-bold '>Create a listing</h1>
-      <div className=' flex mt-8 ml-32 '>
-        <div className='w-1/4 ml-auto '>
+      <div className=' md:flex mt-8 mx-auto md:ml-32 '>
+        <div className=' xl:w-1/4 md:ml-auto '>
 
-           <div className='flex flex-col gap-4'>
+           <div className='ml-20 md:ml-0 flex flex-col gap-4'>
           <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='username' type="text" placeholder='enter name'/>
         <textarea className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='description' type="text" placeholder='enter description'/>
         <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='address' type="text" placeholder='enter address'/>
@@ -41,7 +41,7 @@ export const CreateListing = () => {
         </div>
        
 
-      <div className='w-1/3 mr-auto'>
+      <div className=' xl:w-1/3 md:mr-auto'>
       <h2>First image should be cover image (max-6)</h2>
 <div className='flex items-center  '>
 <input aria-describedby="user_avatar_help" id="user_avatar" type="file" className=' bg-slate-600 h-[30px] rounded-md '/>
