@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import {ImSpinner3} from 'react-icons/im'
 import  {signSuccess,signFailure,signStart} from '../redux/user/userSlice'
 import { useDispatch, useSelector } from 'react-redux';
+import OAuth from '../authentication/OAuth';
 export const Signin = () => {
   const [usersignup,setUserSignUp] = useState({})
   // const [error,setError] = useState(null)
@@ -70,11 +71,13 @@ export const Signin = () => {
         <input className='m-2 p-2 w-full rounded-md outline-slate-200'name='email' required onChange={handleChange} type="text" id='email' placeholder='enter email'/>
         <input className='m-2 p-2 w-full rounded-md outline-slate-200' name='password' required type='password' onChange={handleChange} id='password' placeholder='enter password'/>
         <button className='p-2 m-2 w-full rounded-md bg-slate-800 hover:bg-slate-900 mt-4 text-white' >{loading? <ImSpinner3 className='mx-auto'/>:"Signin"}</button>
-        <button className='p-2 m-2 w-full rounded-md bg-green-600 mt-4 text-white'>Create Listing</button>
+         <OAuth/>
         <div className=' font-semibold text-sm flex mr-auto gap-2 items-center  m-2 p-2 '>
           <span>Have an account :</span>
           <span className='text-red-700 cursor-pointer' onClick={()=>navigate('/signin')}>Sign In</span>
+         
         </div>
+        
         {error && <p className='mt-5 text-red-600'>{error.message}</p>}
        </form>
     </div>
