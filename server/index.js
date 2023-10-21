@@ -2,8 +2,12 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const {  mongoose } = require('mongoose');
+const cookieParser = require('cookie-parser')
 const userRouter = require('./routes/UserRoutes');
 const authRouter = require('./routes/authRoutes');
+const listingRouter = require('./routes/listingRouter');
+
+
 dotenv.config();
 const port = process.env.port || 5000;
 
@@ -18,9 +22,12 @@ mongoose.connect(process.env.MONGO_URL).then((res)=>{
 //use middelwares
 app.use(express.json())
 
+app.use(cookieParser())
+
 //middelwares for routes
 app.use('/api/user',userRouter)
 app.use('/api/auth',authRouter)
+app.use('/api/listing',listingRouter);
 
 app.use((err,req,res,next)=>{
   const statusCode = err.statusCode || 500;

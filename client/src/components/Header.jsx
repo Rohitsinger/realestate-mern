@@ -4,9 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 // import {FaBars} from 'react-icons/fa'
 // import {FaTimes} from 'react-icons/fa'
 import {AiOutlineSearch} from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 const Header = () => {
+  const {currentUser} = useSelector(state=>state.user)
+const navigate = useNavigate()
   const [ismobile,setIsMobile] = useState(true)
-  const navigate = useNavigate()
+  
   return (
     <header className='bg-slate-200 shadow-md '>
       <div className='flex  justify-between items-center mx-auto max-w-6xl p-3  inset-x-0' >
@@ -23,8 +26,12 @@ const Header = () => {
    
          <Link to='/about' className='hover:text-slate-500' ><li>About</li></Link>
         <div className='w-6 flex items-center justify-center'>
-          <img  className="w-full h-full rounded-full " onClick={()=>navigate('/profile')} src="https://images.pexels.com/photos/5774802/pexels-photo-5774802.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
+        {currentUser ? (
+          <img  className="w-full h-full rounded-full " onClick={()=>navigate('/profile')} src={currentUser.data.avatar} alt="" />
+        ):(<Link to='/signin' className='hover:text-slate-500' ><li>Signin</li></Link>)}
+         
         </div>
+    
         </ul>
         {/* <button className='mobile_menu_icon' onClick={()=>setIsMobile(!ismobile)}>{ismobile?<FaTimes/>:<FaBars/>} </button> */}
         </div>

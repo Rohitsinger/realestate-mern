@@ -14,6 +14,7 @@ import { Signup } from './pages/Signup'
 import { CreateListing } from './pages/CreateListing'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PrivateRoutes } from './components/PrivateRoutes'
 function App() {
 
   
@@ -28,8 +29,9 @@ function App() {
           <Route exact path='/' element={<Home/>}/>
           <Route  path='/search' element={<Search/>}/>
           <Route  path='/search/id' element={<SearchId/>}/>
-         
+          <Route   element={<PrivateRoutes/>}>
           <Route path='/profile' element={<Profile/>}/>
+          </Route>
           <Route path='/signin' element={<Signin/>}/>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/about' element={<About/>}/>

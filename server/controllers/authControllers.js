@@ -1,13 +1,13 @@
 const User = require("../models/authModel");
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const { verifyToken } = require('../utils/verifyUser');
 const authSignup = async(req,res,next) =>{
     const {username,email,password} = req.body;
     console.log(username,email,password);
-    if (!email || !password || !username) {
-        return res.status(422).json({ error: "please enter all the fields" });
-      }
+    // if (!email || !password || !username || !avatar) {
+    //     return res.status(422).json({ error: "please enter all the fields" });
+    //   }
 try {
     const userExist = await User.findOne({email:email})
       if(userExist){
@@ -46,9 +46,15 @@ try {
 
       if(!isMatched){
         res.status(500).json({error:"Credential not matched"})
-      } else{
-        res.status(201).json({message:"user signedin successfully"})
-      }
+      } 
+
+      const token = jwt.sign({ id: registered._id }, process.env.SECRET_KEY);
+      console.log(token);
+      const { password: pass, ...rest } = registered._doc;
+      res
+        .cookie('access_token', token, { httpOnly: true })
+        .status(200)
+        .json({rest,token});
 
          
 } catch (error) {
@@ -95,4 +101,14 @@ const google = async (req, res, next) => {
 
 }
 
-module.exports = {authSignup,authSignIn,google}
+
+const signOut = (req,res,next) =>{
+  try {
+    res.clearCookie('access_token')
+     res.status(200).send("signout")
+  } catch (error) {
+     next(error)
+  }
+}
+
+module.exports = {authSignup,authSignIn,google,signOut}

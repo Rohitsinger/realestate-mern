@@ -1,9 +1,11 @@
 const express = require('express');
-const { userSignup } = require('../controllers/UserControllers');
+const { updateUser } = require('../controllers/UserControllers');
+const verifyToken = require('../utils/verifyUser');
+
 
 
 const  router = express.Router();
 
-router.get('/signup',userSignup);
+router.patch('/updateuser/:id',verifyToken,updateUser);
 
 module.exports = router;

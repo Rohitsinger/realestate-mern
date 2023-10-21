@@ -1,6 +1,15 @@
-import React from 'react'
+import  { useEffect, useRef } from 'react'
 
 export const CreateListing = () => {
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [])
+  
+    
+    console.log();
+
   return (
 <div>        
        <h1 className=' flex justify-center items-center text-2xl font-bold '>Create a listing</h1>
@@ -8,7 +17,7 @@ export const CreateListing = () => {
         <div className=' xl:w-1/4 md:ml-auto '>
 
            <div className='ml-20 md:ml-0 flex flex-col gap-4'>
-          <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='username' type="text" placeholder='enter name'/>
+          <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' ref={inputRef} name='username' type="text" placeholder='enter name'/>
         <textarea className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='description' type="text" placeholder='enter description'/>
         <input className='m-2 p-2 w-64 rounded-md outline outline-offset-2 outline-slate-300' name='address' type="text" placeholder='enter address'/>
           </div>
