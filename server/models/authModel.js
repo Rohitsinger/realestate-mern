@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
       type : String,
       default:"https://www.shutterstock.com/image-vector/default-avatar-profile-icon-vector-260nw-1725655669.jpg"
    },
+   userRef:{
+      type:mongoose.Types.ObjectId,
+      ref:"listing"
+     }
 },{timestamps:true})
 
 const User = mongoose.model("User",userSchema);

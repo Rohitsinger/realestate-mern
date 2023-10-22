@@ -1,5 +1,5 @@
 const  mongoose  = require("mongoose");
-const {ObjectId} = mongoose.Types
+
 const listingSchema = new mongoose.Schema({
    name:{
     type:String,
@@ -51,7 +51,7 @@ const listingSchema = new mongoose.Schema({
       required:true
    },
    userRef:{
-    type:ObjectId,
+    type:mongoose.Types.ObjectId,
     ref:"User"
    }
 },{timestamps:true})
