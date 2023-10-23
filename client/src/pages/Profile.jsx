@@ -61,11 +61,10 @@ const handlePhotoChange = (file) => {
     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log('Upload is ' + progress + '% done');
-    setFileUpload(Math.round(progress))
-
-  }, 
+    // setFileUpload(Math.round(progress))
+}, 
   (error) => {
-
+    console.log(error);
     setFileUploadError(true)
   }, 
   () => {
