@@ -11,7 +11,7 @@ import SearchId from './pages/SearchId'
 import Profile from './pages/Profile'
 import { Signin } from './pages/Signin'
 import { Signup } from './pages/Signup'
-import { CreateListing } from './pages/CreateListing'
+import  CreateListing  from './pages/CreateListing'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PrivateRoutes } from './components/PrivateRoutes'

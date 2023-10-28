@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const {  mongoose } = require('mongoose');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const cors = require('cors')
 const userRouter = require('./routes/UserRoutes');
 const authRouter = require('./routes/authRoutes');
 const listingRouter = require('./routes/listingRouter');
@@ -21,7 +22,7 @@ mongoose.connect(process.env.MONGO_URL).then((res)=>{
 
 //use middelwares
 app.use(express.json())
-
+app.use(cors({origin:true}))
 app.use(cookieParser())
 
 //middelwares for routes
@@ -37,6 +38,7 @@ app.use((err,req,res,next)=>{
     statusCode,
     message
   })
+  
 })
 
 app.listen(port,()=>{

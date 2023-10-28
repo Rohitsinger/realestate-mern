@@ -1,17 +1,16 @@
 const Listing = require("../models/listingModel");
 
 
-const createListing = async(req,res,next) => {
-   const {name,description,address,regularPrice,discountedPrice,bedrooms,furnished,bathrooms,parking,type,offer,imageUrl,refUser} = req.body
-   if(!req.body) return
+// const createListing = async(req,res,next) => {
+
+
+ const createListing = async (req, res, next) => {
    try {
-   
-    const listingDetails = await Listing.create(req.body)
-    console.log(listingDetails);
-    } catch (error) {
-    console.log(error);
-    res.send(error)
+     const listing = await Listing.create(req.body);
+     return res.status(201).json(listing);
+   } catch (error) {
+     next(error);
    }
-}
+ };
 
 module.exports = {createListing}
