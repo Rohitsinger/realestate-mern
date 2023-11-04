@@ -128,7 +128,7 @@ function CreateListing() {
         return setError('Discount price must be lower than regular price');
       setLoading(true);
       setError(false);
-      const res = await axios.post('/api/listing/createlists', {
+      const res = await fetch('/api/listing/createlists', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -141,15 +141,16 @@ function CreateListing() {
       const data = await res.json();
     
       setLoading(false);
-      if (data.success === false) {
-        setError(data.message);
-      }
+      // if (data.success === false) {
+      //   setError(data.message);
+      // }
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
   };
+  console.log(formData);
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
