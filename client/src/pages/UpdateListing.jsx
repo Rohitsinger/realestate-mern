@@ -4,6 +4,7 @@ import { app } from '../authentication/Firebase';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 function UpdateListing() {
@@ -142,20 +143,25 @@ function UpdateListing() {
         return setError('Discount price must be lower than regular price');
       setLoading(true);
       setError(false);
-      const res = await fetch(`/api/listing/update/${params.listingId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const res = await axios.patch(`/api/listing/update/${params.listingId}`, {
+
           ...formData,
           userRef: currentUser.data._id,
-        }),
+      
       });
-      const data = await res.json();
-    
+  
+      toast('😍 User Signedin Successfully!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
       setLoading(false);
-      navigate(`/listing/${data._id}`);
+      navigate(`/listing/${params.listingId}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);

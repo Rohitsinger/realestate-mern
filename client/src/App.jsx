@@ -16,6 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PrivateRoutes } from './components/PrivateRoutes'
 import UpdateListing from './pages/UpdateListing'
+import Listing from './pages/Listing'
 function App() {
 
   
@@ -37,8 +38,8 @@ function App() {
           </Route>
           <Route path='/signin' element={<Signin/>}/>
           <Route path='/signup' element={<Signup/>}/>
-          <Route path='/about' element={<About/>}/>
-
+          <Route path='/about'  element={<About/>}/>
+          <Route path='/listing/:listingId' element={<Listing/>}/>
         </Routes>
         <ToastContainer />
       </BrowserRouter>

@@ -96,8 +96,8 @@ const Profile = () => {
       console.log(error);
       dispatch(updateUserFailure())
     }
-
   }
+
   useEffect(() => {
     handleClick()
   }, [])
@@ -111,10 +111,8 @@ const Profile = () => {
       const res = await axios.get(`/api/user/listings/${currentUser.data._id}`)
       setUserListingDetails(res.data);
       console.log(res.data);
-
     } catch (error) {
       console.log(error);
-
     }
   }, [searchTerm])
 
@@ -130,8 +128,8 @@ const Profile = () => {
   }
 
   //moving to single posts
-  const movetoSinglePost = (id) => {
-    navigate(`/profile/${id}`)
+  const movetoSinglePost = (listingId) => {
+    navigate(`/listing/${listingId}`)
   }
 
   return (
@@ -178,7 +176,7 @@ const Profile = () => {
                   <img
                     src={listingDetails.imageUrls}
                     alt="Laptop"
-                    className="h-[200px] w-full rounded-md object-cover "
+                    className="h-full w-full rounded-md object-cover "
                     onClick={() => movetoSinglePost(listingDetails._id)}
                   />
                 </div>
