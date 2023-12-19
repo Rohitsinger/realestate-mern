@@ -108,7 +108,8 @@ const Profile = () => {
   const handleShowListing = useCallback(async () => {
     try {
      setShowlisisting(true)
-      const res = await axios.get(`/api/user/listings/${currentUser.data._id}`)
+      const res = await axios.get(`/api/listing/getLists`)
+      // const res = await axios.get(`/api/user/listings/${currentUser.data._id}`)
       setUserListingDetails(res.data);
       console.log(res.data);
     } catch (error) {
@@ -134,7 +135,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className='w-[600px] shadow-2xl m-auto mt-12 '>
+      <div className='md:w-[600px] w-[350px] overflow-x-hidden shadow-2xl m-auto mt-12 h-auto'>
         <form action="" method="post" className='flex flex-col justify-center items-center m-4 p-4'>
 
           <h2 className='mb-4 text-2xl font-bold'>Profile</h2>
@@ -147,11 +148,11 @@ const Profile = () => {
 
           <button type='button' className='p-2 m-2 w-64 rounded-md bg-blue-800 mt-4 text-white' onClick={handleClick}>Update</button>
           <button className='p-2 m-2 w-64 rounded-md bg-green-600 mt-4 text-white' onClick={() => navigate('/create-listing')}>Create Listing</button>
-          <div className='text-red-700 font-semibold text-sm flex justify-between items-center gap-80 m-2 p-2 '>
+          <div className='text-red-700 font-semibold text-sm flex justify-between items-center gap-36 md:gap:80 m-2 p-2 '>
             <span>Delete Account</span>
             <span className='hover:text-slate-500 cursor-pointer' onClick={signOut}>Signout</span>
           </div>
-          <span className='text-sm ml-8  mr-auto font-semibold text-red-700'>Something went wrong</span>
+          <span className='text-sm ml-20  mr-auto font-semibold text-red-700'>Something went wrong</span>
         </form>
       </div>
 
@@ -171,7 +172,7 @@ const Profile = () => {
             }
             }).map((listingDetails, id) => (
             <>
-              <div className="flex max-w-2xl flex-col items-center rounded-md border md:flex-row mx-auto cursor-pointer" key={id} >
+              <div className="flex max-w-2xl  flex-col items-center rounded-md border md:flex-row mx-auto cursor-pointer" key={id} >
                <div className="h-full w-full md:h-[200px] md:w-[300px]">
                   <img
                     src={listingDetails.imageUrls}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {BrowserRouter, Routes,Route} from 'react-router-dom'
+import {BrowserRouter, Routes,Route, json} from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
 import Home from './components/Home'
@@ -17,14 +17,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { PrivateRoutes } from './components/PrivateRoutes'
 import UpdateListing from './pages/UpdateListing'
 import Listing from './pages/Listing'
+import Drag from './Drag'
 function App() {
-
-  
 
 
 
   return (
     <div className="App">
+  
       <BrowserRouter>
       <Header/>
         <Routes>
@@ -42,7 +42,7 @@ function App() {
           <Route path='/listing/:listingId' element={<Listing/>}/>
         </Routes>
         <ToastContainer />
-      </BrowserRouter>
+      </BrowserRouter> 
        
     </div>
   )

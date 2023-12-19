@@ -58,5 +58,13 @@ const getSingleListing = async(req,res,next) => {
    res.status(200).json(getList)
 
 }
+const getListing = async(req,res,next) => {
+   const getList = await Listing.find()
+   if(!getList){
+    return next(401,'User not found') 
+   }
+   res.status(200).json(getList)
 
-module.exports = {createListing,deleteListing,updateListing,getSingleListing}
+}
+
+module.exports = {createListing,deleteListing,updateListing,getSingleListing,getListing}

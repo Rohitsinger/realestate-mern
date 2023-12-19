@@ -44,6 +44,20 @@ res.status(200).json(rest);
      return next(errorHandler(401, 'You can only view your own listings!'));
    }
  };
+ const getUser = async (req, res, next) => {
+   
+     try {
+       const user = await User.findById(req.params.id);
+       if(!user) return res.send("User not found")
+       console.log(user._doc);
+    const {password:pass, ...rest} = user._doc;
+    res.json(rest)
+     } catch (error) {
+       next(error);
+     }
+   } 
+   
+ 
  
 
-module.exports = {updateUser,getUserListings}
+module.exports = {updateUser,getUserListings,getUser}
