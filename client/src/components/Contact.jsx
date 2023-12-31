@@ -41,7 +41,7 @@ const Contact = ({listing}) => {
            />
            <Link className='py-2 mt-8 px-4 text-center rounded-md bg-slate-400' to={`mailto:${landLord.email}?subject=Regarding ${listing.name}&body=${message}`}>Send message</Link>
           </div>
-           </div>
+         </div>
       )
     }
      

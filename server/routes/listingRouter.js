@@ -1,5 +1,5 @@
 const express = require('express');
-const { createListing, deleteListing, updateListing, getSingleListing,getListing } = require('../controllers/listingController');
+const { createListing, deleteListing, updateListing, getSingleListing,getListing, getCompleteListing } = require('../controllers/listingController');
 const verifyToken  = require('../utils/verifyUser');
 
 const  router = express.Router();
@@ -11,6 +11,8 @@ router.patch('/update/:id',verifyToken,updateListing);
 router.get('/getSingleList/:id',getSingleListing);
 
 router.get('/getLists',getListing);
+
+router.get('/getCompleteLists',getCompleteListing);
 
 router.delete('/delete/:id',deleteListing);
 
