@@ -63,8 +63,7 @@ const getListing = async(req,res,next) => {
    if(!getList){
     return next(401,'User not found') 
    }
-   res.status(200).json(getList)
-
+   res.status(200).json(getList);
 }
 
 const getCompleteListing = async(req,res,next) => {
@@ -76,17 +75,19 @@ const getCompleteListing = async(req,res,next) => {
       offer = {$in : [false , true] }
     }
     let furnished = req.query.furnished; 
-    if(furnished === undefined || furnished==='false'){
-      offer = {$in : [false , true]}
+    if(furnished === undefined || furnished === 'false'){
+      furnished = {$in : [false , true]}
     }
 
     let parking = req.query.parking; 
-    if(parking === undefined || parking==='false'){
-      offer = {$in : [false , true]}
+    if(parking === undefined || parking === 'false'){
+
+      parking = {$in : [false , true]}
     }
 
     let type = req.query.type; 
-    if(type === undefined || type==='all'){
+
+    if(type === undefined || type === 'all'){
       type = {$in : ['sale' , 'rent']}
     }
 
@@ -100,8 +101,8 @@ const getCompleteListing = async(req,res,next) => {
        name:{ $regex : searchTerm , $options : 'i'},
        offer,
        type,
-      //  parking,
-      //  furnished,
+       parking,
+       furnished,
       
     }
     )

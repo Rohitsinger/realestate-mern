@@ -1,15 +1,22 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { MdLightMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
 import { Link, useNavigate } from 'react-router-dom'
 // import {FaBars} from 'react-icons/fa'
 // import {FaTimes} from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 const Header = () => {
+const inputRef = useRef()
   const { currentUser } = useSelector(state => state.user)
   const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
-
+// const [openDarkLightMode,setOpendarkLightMode] = useState(false);
+// const [bgColor, setBgColor] = useState({
+//   backgroudColor:"black",
+//   color:"white"
+// });
 const handleSubmit = (e) => {
   e.preventDefault();
      const urlParams = new URLSearchParams(window.location.search);
@@ -20,6 +27,11 @@ const handleSubmit = (e) => {
   
 }
 
+// const handleChangeBackground =()=>{
+//   setOpendarkLightMode(!openDarkLightMode)
+//   inputRef.current.style.backgroudColor = `${bgColor.backgroudColor}`
+//   inputRef.current.style.color = `white`
+// }
 useEffect(() => {
   const urlParams = new URLSearchParams(location.search);
  const searchTermUrl = urlParams.get('searchTerm');
@@ -40,12 +52,13 @@ useEffect(() => {
         <ul className='flex gap-4 font-semibold' onClick={() => setIsMobile(false)}>
           <Link to='/' className='hover:text-slate-500 '><li >Home</li></Link>
           <Link to='/about' className='hover:text-slate-500' ><li>About</li></Link>
+        
           <div className='w-6 flex items-center justify-center'>
             {currentUser ? (
               <img className="w-full h-full rounded-full " onClick={() => navigate('/profile')} src={currentUser.data.avatar} alt="" />
             ) : (<Link to='/signin' className='hover:text-slate-500' ><li>Signin</li></Link>)}
           </div>
-
+          {/* <span onClick={handleChangeBackground}>{openDarkLightMode?<MdLightMode className='h-5  m-1' ref={inputRef} />:<CiLight className='h-5  m-1' ref={inputRef}/> }</span> */}
         </ul>
 
       </div>

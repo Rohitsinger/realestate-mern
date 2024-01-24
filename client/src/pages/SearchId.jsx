@@ -41,4 +41,4 @@ const SearchId = () => {
   )
 }
 
-export default SearchId
+export default SearchId;

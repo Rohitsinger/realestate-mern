@@ -19,16 +19,13 @@ const userSlice = createSlice({
             state.currentUser = action.payload;
             state.loading = false;
             state.error = null;
-
          },
          signFailure:(state,action)=>{
             state.loading = false;
             state.error = action.payload;
-
          },
          signOutStart:(state)=>{
             state.loading = true;
-
          },
          signOutSuccess:(state,action)=>{
             state.currentUser = action.payload;
@@ -43,7 +40,6 @@ const userSlice = createSlice({
          },
          updateUserStart:(state)=>{
             state.loading = true;
-
          },
          updateUserSuccess:(state,action)=>{
             state.currentUser = action.payload;
@@ -54,7 +50,6 @@ const userSlice = createSlice({
          updateUserFailure:(state,action)=>{
             state.loading = false;
             state.error = action.payload;
-
          },
     } 
 })

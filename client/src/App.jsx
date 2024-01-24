@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home/>}/>
           <Route  path='/search' element={<Search/>}/>
-          <Route  path='/search/id' element={<SearchId/>}/>
+          <Route  path='/search/:id' element={<SearchId/>}/>
           <Route   element={<PrivateRoutes/>}>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/create-listing' element={<CreateListing/>}/>
