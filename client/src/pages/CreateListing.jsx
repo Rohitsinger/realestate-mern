@@ -18,11 +18,12 @@ function CreateListing() {
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 50,
-    discountPrice: 0,
+    discountPrice: 10,
     offer: false,
     parking: false,
     furnished: false,
   });
+  console.log(formData);
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);

@@ -49,7 +49,7 @@ const Search = () => {
   }
   fetchListing()
   }, [location.search])
-  console.log(listings);
+ 
   const handleChange = (e) => {
       if (e.target.id==='all' || e.target.id==='rent' || e.target.id==='sale') {
         setSideBarData({...sideBarData,type:e.target.id})
@@ -69,6 +69,10 @@ const Search = () => {
       }
   }
 
+  const clickToNavigate = (id) => {
+    navigate(`/search/${id}`)
+  }
+
   const handleSubmit = (e) => {
      e.preventDefault();
    const urlParams = new URLSearchParams();
@@ -83,8 +87,8 @@ const Search = () => {
    navigate(`/search?${searchQuery}`)
   }
   return (
-      <div className=' sm:flex border-zinc-500 overflow-x-hidden'>
-        <div className='sm:w-2/6 bg-slate-50'>
+      <div className=' sm:flex border-zinc-500 '>
+        <div className='md:w-2/6 bg-slate-50 overflow-x-hidden'>
           <div className='flex p-4 gap-4'>
             <h2 className='mt-3 font-medium'>Search:</h2>
             <form action=""  className='flex items-center  bg-slate-50 rounded-lg '>
@@ -146,19 +150,19 @@ const Search = () => {
         </div>
         </div>
         {/* cards  */}
-          <div className="w-4/6  bg-slate-100 min-h-screen">
-          <h1 className="text-2xl ml-72">Recent place for Offer</h1>
+          <div className="md:w-4/6  bg-slate-100 min-h-screen overflow-x-hidden" >
+          <h1 className="text-2xl">Recent place for Offer</h1>
           {loading ? <h2 className="flex flex-col justify-center items-center">Loading</h2> :""}
-          <div className='  grid grid-cols-2  '>
-           {listings.length>0?listings.map((listing)=>(
-          <div className="w-full    m-2 p-2" >
+          <div className='  grid grid-cols-1 md:grid-cols-2  '>
+           {listings.length>0?listings.map((listing,i)=>(
+          <div className="w-full m-2 p-2"  key={i}>
            <div className=" border-spacing-2 p-4 shadow-2xl">
-           <img src={listing.imageUrls} alt="" />
+           <img src={listing.imageUrls} alt="" onClick={()=>clickToNavigate(listing._id)}/>
            <h1 className="font-bold text-2xl">{listing.name}</h1>
            <h4 className="mt-2">{listing.address}</h4>
            <p className="text-sm">{listing.description}</p>
               <div className="mt-2 ">
-                 <span className="text-slate-500">$ 3,400/month</span>
+                 <span className="text-slate-500">$ {listing.regularPrice}/month</span>
                 <div className="flex justify-between mt-2">
                 <span className="text-slate-600">{listing.bedrooms} beds</span>
                 <span className="text-slate-600">{listing.bathrooms} Bathrooms</span>

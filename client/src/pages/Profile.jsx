@@ -159,7 +159,7 @@ const Profile = () => {
       <button className='text-sm w-full font-semibold text-green-700' onClick={handleShowListing}>{showlisisting ? "" : "Show Listing"}
       </button>
       <div>
-   {userListingDetails.length>0 &&      <form action="" className='flex items-center mr-8 rounded-lg '>
+   {userListingDetails.length>0 &&  <form action="" className='flex items-center mr-8 rounded-lg '>
 
 <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder='search...' className=' p-3 ml-auto mr-8  rounded-lg w-24  outline-none' />
 <AiOutlineSearch className='text-slate-600' />
@@ -172,8 +172,8 @@ const Profile = () => {
             }
             }).map((listingDetails, id) => (
             <>
-              <div className="flex max-w-2xl  flex-col items-center rounded-md border md:flex-row mx-auto cursor-pointer" key={id} >
-               <div className="h-full w-full md:h-[200px] md:w-[300px]">
+              <div className="flex max-w-2xl m-4 flex-col items-center rounded-md border md:flex-row mx-auto cursor-pointer " key={id} >
+               <div className="h-full w-full md:h-[200px] md:w-[300px] ">
                   <img
                     src={listingDetails.imageUrls}
                     alt="Laptop"

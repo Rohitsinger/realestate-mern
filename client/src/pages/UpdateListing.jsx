@@ -34,7 +34,7 @@ function UpdateListing() {
   useEffect(() => {
    const fetchisting = async() =>{
     const listingId = params.listingId
-    console.log(listingId);
+  
     const updateuser = await axios.get(`/api/listing/getSingleList/${listingId}`)
     console.log(updateuser)
     setFormData(updateuser.data)
@@ -150,7 +150,7 @@ function UpdateListing() {
       
       });
   
-      toast('😍 User Signedin Successfully!', {
+      toast('😍 User Updated Successfully!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

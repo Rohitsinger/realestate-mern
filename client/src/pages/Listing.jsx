@@ -13,7 +13,6 @@ import Contact from '../components/Contact';
 const Listing = () => {
   const { currentUser } = useSelector(state => state.user)
   const [singleUser, setSingleUser] = useState([])
-  const [currentIndex, setCurrentIndex] = useState()
   const [err, setErr] = useState(false)
   const [loading, setLoading] = useState(false)
   const { listingId } = useParams()
@@ -31,22 +30,7 @@ const Listing = () => {
       setErr(true)
     }
   }, [listingId, loading])
-  console.log(singleUser);
-
-
-  const prevSlide = () => {
-    //  let isFirstImage = currentIndex === 0;
-    //  let newIndex = isFirstImage ? slides.length-1 : currentIndex-1
-    //   setCurrentIndex(newIndex)
-  }
-  const nextSlide = () => {
-    //  let isLastImage = currentIndex === slides.length-1;
-    //  let newIndex = isLastImage ? 0:  currentIndex+1
-    //   setCurrentIndex(newIndex)
-  }
-
-
-
+console.log(singleUser);
   return (
 
     <div className="flex max-w-2xl overflow-x-hidden  flex-col items-center rounded-md   md:mx-auto md:mt-8 inset-x-0">
@@ -55,10 +39,10 @@ const Listing = () => {
         <img src={singleUser.imageUrls} alt="Laptop" className="h-full w-full rounded-md object-cover" />
 
         <div className='absolute  hidden group-hover:block top-[50%] translate-x-0 translate-y-[50%] left-5  text-white text-2xl rounded-full p-2 bg-black/20  cursor-pointer '>
-          <AiOutlineDoubleLeft onClick={() => prevSlide()} />
+          <AiOutlineDoubleLeft  />
         </div>
         <div className='absolute  hidden  group-hover:block  top-[50%] translate-x-0 translate-y-[50%] right-5 text-2xl rounded-full p-2 bg-black/20  cursor-pointer text-white '>
-          <AiOutlineDoubleRight onClick={() => nextSlide()} />
+          <AiOutlineDoubleRight  />
         </div>
       </div>
       <div>
@@ -72,7 +56,7 @@ const Listing = () => {
           <h1 className="inline-flex ml-6 items-center text-lg font-semibold">
             {singleUser.name}
           </h1>
-          {singleUser.type === "rent" ? <span className="ml-10 text-lg font-bold text-red-800">Rent</span> : <span className="font-medium text-green-500">Sale</span>}
+          {singleUser.type === "offer" ? <span className="ml-10 text-lg font-bold text-red-800">${singleUser.discountPrice} Discounted  Price</span> : ""}
           <p className="mt-3 text-sm text-gray-600 flex flex-wrap p-4">
             {singleUser.description}
           </p>
