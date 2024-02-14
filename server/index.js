@@ -21,8 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then((res)=>{
     console.log("not connected to mongodb",err);
 })
 
-//path 
-const dirname = path.resolve()
+
 
 //use middelwares
 app.use(express.json())
@@ -34,11 +33,19 @@ app.use('/api/user',userRouter)
 app.use('/api/auth',authRouter)
 app.use('/api/listing',listingRouter);
 
-app.use(express.static(path.join(dirname,'/client/dist')));
+//path 
+const __dirname1 = path.resolve();
+if(process.env.NODE_ENV === "production"){
+  app.use(express.static(path.join(__dirname1,'/client/dist')));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname1,"client","build","index.html"))
+  })
+} else{
+  app.get('*',(req,res)=>{
+    res.send("Api running well")
+  })
+}
 
-app.get('*',(req,res)=>{
-  res.sendFile(path.join(dirname,'client','dist','index.html'))
-})
 
 app.use((err,req,res,next)=>{
   const statusCode = err.statusCode || 500;
