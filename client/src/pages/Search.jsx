@@ -4,8 +4,9 @@ import RecentOfferCard from "../reuse/RecentOfferCard"
 import axios from 'axios'
 const Search = () => {
   const navigate = useNavigate()
-  const [loading,setLoading] = useState(false)
-  const [listings,setListings] = useState([])
+  const [loading,setLoading] = useState(false);
+  const [listings,setListings] = useState([]);
+  const [showMoreButton,setShowMoreButton] = useState(false)
   const [sideBarData,setSideBarData] = useState({
     searchTerm:'',
     type:'all',
@@ -42,9 +43,15 @@ const Search = () => {
   const fetchListing = async() => {
     setLoading(true);
     const searchQuery = urlParams.toString()
-    const result = await axios.get(`/api/listing/getCompleteLists?${searchQuery}`)
+    const result = await axios.get(`/api/listing/getCompleteLists?${searchQuery}`);
+    if(result.data.length>8){
+      setShowMoreButton(true)
+     }else{
+      setShowMoreButton(false)
+     }
     setListings(result.data);
-    setLoading(false)
+    setLoading(false);
+    
    
   }
   fetchListing()
@@ -85,6 +92,20 @@ const Search = () => {
    urlParams.set('order',sideBarData.order)
    const searchQuery = urlParams.toString()
    navigate(`/search?${searchQuery}`)
+  }
+
+  const onShowMoreClick = async() => {
+     let numberOfListings = listings.length;
+     let startIndex = numberOfListings;
+     const urlParams = new URLSearchParams(location.search);
+     urlParams.set('startIndex' , startIndex);
+     const searchQuery = urlParams.toString()
+     const result = await axios.get(`/api/listing/getCompleteLists?${searchQuery}`);
+     if(result.data.length<9){
+       setShowMoreButton(false)
+      }
+     setListings([...listings,...result.data]);
+     setLoading(false);
   }
   return (
       <div className=' sm:flex border-zinc-500 '>
@@ -157,12 +178,12 @@ const Search = () => {
            {listings.length>0?listings.map((listing,i)=>(
           <div className="w-full m-2 p-2"  key={i}>
            <div className=" border-spacing-2 p-4 shadow-2xl">
-           <img src={listing.imageUrls} alt="" onClick={()=>clickToNavigate(listing._id)}/>
+           <img className="h-[320px] w-full object-cover hover:scale-105 transition-scale duration-300"  src={listing.imageUrls} alt="" onClick={()=>clickToNavigate(listing._id)}/>
            <h1 className="font-bold text-2xl">{listing.name}</h1>
            <h4 className="mt-2">{listing.address}</h4>
            <p className="text-sm">{listing.description}</p>
               <div className="mt-2 ">
-                 <span className="text-slate-500">$ {listing.regularPrice}/month</span>
+                <span className="text-slate-500">$ {listing.regularPrice}/month</span>
                 <div className="flex justify-between mt-2">
                 <span className="text-slate-600">{listing.bedrooms} beds</span>
                 <span className="text-slate-600">{listing.bathrooms} Bathrooms</span>
@@ -173,6 +194,9 @@ const Search = () => {
           </div>
         
          )):<h1 className="flex flex-col justify-center items-center m-12 py-24">No data found</h1>}
+         {showMoreButton &&  (
+          <button onClick={onShowMoreClick} className="underline">Show More</button>
+         )}
         </div>
           </div>
       </div>

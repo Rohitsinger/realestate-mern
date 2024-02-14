@@ -7,7 +7,43 @@ import PlaceforSalecard from '../reuse/PlaceforSalecard'
 
 import {AiOutlineDoubleLeft} from 'react-icons/ai'
 import {AiOutlineDoubleRight} from 'react-icons/ai'
+import axios from 'axios'
 const Home = () => {
+const [offerListings,setOfferListings] = useState([])
+const [rentListings,setRentListings] = useState([])
+const [saleListings,setSaleListings] = useState([])
+useEffect(()=>{
+  const fetchListings = async() => {
+    try {
+        const getListingsThoughOffer = await axios.get(`/api/listing/getCompleteLists?offer=true&limit=4`)
+        setOfferListings(getListingsThoughOffer.data);
+        fetchRentListings()
+    } catch (error) {
+      console.log(error);
+    }
+  } 
+  fetchListings()
+},[])
+
+  const fetchRentListings = async() => {
+    try {
+        const getListingsThoughOffer = await axios.get(`/api/listing/getCompleteLists?type=rent&limit=4`)
+        setRentListings(getListingsThoughOffer.data);
+        fetchSaleListings()
+    } catch (error) {
+      console.log(error);
+    }
+  } 
+
+
+  const fetchSaleListings = async() => {
+    try {
+        const getListingsThoughOffer = await axios.get(`/api/listing/getCompleteLists?type=rent&limit=4`)
+        setSaleListings(getListingsThoughOffer.data);
+    } catch (error) {
+      console.log(error);
+    }
+  } 
 
   const slides = [
     {
@@ -62,7 +98,7 @@ const Home = () => {
     </div>
    </div>
 <div className=' max-w-[1480px] h-[480px] m-auto py-16 px-4 w-full flex justify-between  group duration-200  relative'>
- <div style={{backgroundImage:`url(${slides[currentIndex].url})`}} className='w-full h-full flex rounded-4xl bg-center bg-cover duration-500 '></div>
+ <div style={{backgroundImage:`url(${slides[currentIndex].url})`}} className='w-full h-full flex rounded-4xl bg-center overflow-hidden bg-contain duration-500 '></div>
 <div className='absolute  hidden group-hover:block top-[50%] translate-x-0 translate-y-[50%] left-5  text-white text-2xl rounded-full p-2 bg-black/20  cursor-pointer '>
       <AiOutlineDoubleLeft onClick={()=>prevSlide()}/>
 </div>
@@ -76,16 +112,16 @@ const Home = () => {
      <div className='overflow-x-hidden '>
      <div className='w-full '>
      
-          <RecentOfferCard/>
+          <RecentOfferCard offerListings={offerListings}/>
          
      </div>
      <div>
      <h2></h2>
-          <PlaceforRentCard/>
+          <PlaceforRentCard rentListings={rentListings}/>
      </div>
      <div>
     
-          <PlaceforSalecard/>
+          <PlaceforSalecard saleListings={saleListings}/>
      </div>
      </div>
     </div>

@@ -102,7 +102,7 @@ const Profile = () => {
     handleClick()
   }, [])
 
-  console.log(updateUser);
+
 
   //showing listings
   const handleShowListing = useCallback(async () => {
@@ -143,10 +143,10 @@ const Profile = () => {
           <input type='file' onChange={(e) => setFile(e.target.files[0])} ref={fileRef} hidden accept='image/*' />
           <img onClick={() => fileRef.current.click()} className='w-16 rounded-full' src={currentUser.data.avatar} alt="" />
 
-          <input className='m-2 p-2 w-64 rounded-md outline-slate-200' type="text" onChange={handleChange} id='username' defaultValue={currentUser.data.username} />
-          <input className='m-2 p-2 w-64 rounded-md outline-slate-200' type="text" onChange={handleChange} id='email' defaultValue={currentUser.data.email} />
+          <input className='m-2 p-2 w-64 rounded-md outline-slate-200' type="text" onChange={handleChange} id='username' readOnly defaultValue={currentUser.data.username} />
+          <input className='m-2 p-2 w-64 rounded-md outline-slate-200' type="text" onChange={handleChange} id='email' readOnly defaultValue={currentUser.data.email} />
 
-          <button type='button' className='p-2 m-2 w-64 rounded-md bg-blue-800 mt-4 text-white' onClick={handleClick}>Update</button>
+          {/* <button type='button' className='p-2 m-2 w-64 rounded-md bg-blue-800 mt-4 text-white' onClick={handleClick}>Update</button> */}
           <button className='p-2 m-2 w-64 rounded-md bg-green-600 mt-4 text-white' onClick={() => navigate('/create-listing')}>Create Listing</button>
           <div className='text-red-700 font-semibold text-sm flex justify-between items-center gap-36 md:gap:80 m-2 p-2 '>
             <span>Delete Account</span>

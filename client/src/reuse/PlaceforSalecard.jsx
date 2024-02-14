@@ -1,28 +1,38 @@
+import { Link } from "react-router-dom"
 
 
-const PlaceforSalecard = () => {
+const PlaceforSalecard = ({saleListings}) => {
+ 
   return (
-  
-      <div className=' bg-slate-100'>
-        <h1 className="text-2xl ml-24">Recent place for Sale:</h1>
-          <div className="w-full  grid grid-cols-1 sm:grid-cols-4  m-2 p-2" >
+    <>
+    <h1 className="text-2xl ml-24 font-semibold text-gray-500 hover:text-gray-600 hover:scale-150 duration-300" ><Link to={`/search?type=sale`}>Recent place for Sale</Link></h1>
+    <div className=' bg-slate-100  grid grid-cols-1 md:grid-cols-3  m-2 p-2'>
+    
+      {saleListings.map((sale,id)=>(
+        <div key={sale._id}>
+          <div className="w-full " >
            <div className=" border-spacing-2 p-4 shadow-2xl">
-           <img src="https://images.pexels.com/photos/7512041/pexels-photo-7512041.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" />
-           <h1 className="font-bold text-2xl">Modern penthouse class..</h1>
-           <h4 className="mt-2">36/2/1 r.n.r.c ghat road shibpur Howrah </h4>
-           <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, praesentium consectetur incidunt culpa omnis illum, neque error, sapiente saepe porro at quae nam ducimus architecto deleniti fugiat quia! Consequatur, deleniti.</p>
+           <img src={sale.imageUrls[0]} alt="" />
+           <h1 className="font-bold text-2xl">{sale.name}</h1>
+           <h4 className="mt-2">{sale.address} </h4>
+           <p className="text-sm">{sale.description}</p>
               <div className="mt-2 ">
-                 <span className="text-slate-500">$ 3,400/month</span>
+                 <span className="text-slate-500">$ {sale.regularPrice}/month</span>
                 <div className="flex justify-between mt-2">
-                <span className="text-slate-600">4 beds</span>
-                <span className="text-slate-600">5 Bathrooms</span>
+                <span className="text-slate-600">{sale.bedrooms} beds</span>
+                <span className="text-slate-600">{sale.bathrooms} Bathrooms</span>
                 </div>
               </div>
-          
+           </div>
            
           </div>
+        
+   
         </div>
+
+      ))}
     </div>
+</>
   )
 }
 
