@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import  {signSuccess,signFailure,signStart} from '../redux/user/userSlice'
+import {ImSpinner3} from 'react-icons/im'
 export const Signup = () => {
   const {error,loading} = useSelector(state=>state.user)
   const [usersignup,setUserSignUp] = useState({})
@@ -67,7 +68,7 @@ export const Signup = () => {
         <input className='m-2 p-2 w-full rounded-md outline-slate-200' onChange={handleChange} name='username' id='username' type="text" placeholder='enter name'/>
         <input className='m-2 p-2 w-full rounded-md outline-slate-200'name='email'  onChange={handleChange} type="text" id='email' placeholder='enter email'/>
         <input className='m-2 p-2 w-full rounded-md outline-slate-200' name='password' type='password' onChange={handleChange} id='password' placeholder='enter password'/>
-        <button style={{backgroundColor:"slategray"}} className='p-2 m-2 w-full rounded-md  bg-slate-700 mt-4 text-white' disabled={loading} >{loading? <ImSpinner3 className='mx-auto'/>:"Signup"}</button>
+        <button style={{backgroundColor:"slategray"}} className='p-2 m-2 w-full rounded-md  bg-slate-700 mt-4 text-white' disabled={loading} >{loading ? <ImSpinner3 className='mx-auto'/>:"Signup"}</button>
         <button className='p-2 m-2 w-full rounded-md bg-red-800 mt-4 text-white'>Continue with google</button>
         <div className=' font-semibold text-sm flex mr-auto gap-2 items-center  m-2 p-2 '>
           <span>Have an account :</span>

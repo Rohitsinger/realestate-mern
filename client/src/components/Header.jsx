@@ -45,11 +45,13 @@ useEffect(() => {
           <Link to='/' className='hover:text-slate-500 '><li >Home</li></Link>
           <Link to='/about' className='hover:text-slate-500' ><li>About</li></Link>
         
-          <div className='w-6 flex items-center justify-center'>
+
             {currentUser ? (
+              <div className='w-6 flex items-center justify-center'>
               <img className="w-full h-full rounded-full " onClick={() => navigate('/profile')} src={currentUser.data.avatar} alt="" />
-            ) : (<Link to='/signin' className='hover:text-slate-500' ><li>Signin</li></Link>)}
-          </div>
+              </div>
+            ) : (<Link to='/signup' className='hover:text-slate-500' ><li>Signup</li></Link>)}
+         
           {/* <span onClick={handleChangeBackground}>{openDarkLightMode?<MdLightMode className='h-5  m-1' ref={inputRef} />:<CiLight className='h-5  m-1' ref={inputRef}/> }</span> */}
         </ul>
 

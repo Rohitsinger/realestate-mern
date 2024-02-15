@@ -8,7 +8,7 @@ const path  =  require('path')
 const userRouter = require('./routes/UserRoutes');
 const authRouter = require('./routes/authRoutes');
 const listingRouter = require('./routes/listingRouter');
-
+const __dirname1 = path.resolve();
 
 dotenv.config();
 const port = process.env.port || 5000;
@@ -34,17 +34,18 @@ app.use('/api/auth',authRouter)
 app.use('/api/listing',listingRouter);
 
 //path 
-const __dirname1 = path.resolve();
-if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname1,'client', 'dist')));
-  app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname1,"client","dist","index.html"))
-  })
-} else{
-  app.get('*',(req,res)=>{
-    res.send("Api running well")
-  })
-}
+
+// if(process.env.NODE_ENV === "production"){
+//   app.use(express.static(path.join(__dirname1,'/client/dist' )));
+//   console.log(__dirname1)
+//   app.get('*',(req,res)=>{
+//     res.sendFile(path.join(__dirname1,"client","dist","index.html"))
+//   })
+// } else{
+//   app.get('*',(req,res)=>{
+//     res.send("Api running well")
+//   })
+// }
 
 
 app.use((err,req,res,next)=>{
